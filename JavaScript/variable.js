@@ -113,4 +113,3 @@ console.log(`value: ${text}, type: ${typeof text}`);
 text = '8' / '2';
 console.log(`value: ${text}, type: ${typeof text}`);
 // console.log(text.charAt(0)); // number type 이므로 에러
-// hi
