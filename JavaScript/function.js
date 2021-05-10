@@ -54,7 +54,7 @@ function printAll(...args) {
     console.log(arg);
   }
   // 더 간단하게 표현
-  args.forEach((arg) => console.log(arg));
+  args.forEach(arg => console.log(arg));
 }
 printAll('dream', 'coding', 'hxxjxx');
 
