@@ -46,8 +46,8 @@ button {
 
 h1 {
   text-align: center;
-  margin-top: 300px;
-  margin-bottom: 0;
+  padding-top: 300px;
+  margin: 0;
   font-size: 500%;
   text-shadow: 0 0 2px #000000;
 }
@@ -56,7 +56,7 @@ h4 {
   text-align: center;
   font-size: 200%;
   margin: 0;
-  margin-bottom: 5%;
+  margin-bottom: 10px;
   text-shadow: 0 0 2px #000000;
 }
 
@@ -72,8 +72,10 @@ form {
 input {
   background: transparent;
   font-size: 140%;
-  margin-bottom: 5%;
+  margin-bottom: 18px;
   border-color: white;
+  color: #ffffff;
+  outline: none;
 }
 
 input::placeholder {
