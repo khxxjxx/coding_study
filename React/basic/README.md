@@ -1,3 +1,7 @@
+# 완성모습
+
+![image](https://user-images.githubusercontent.com/62198405/119324764-26281780-bcbb-11eb-9fb2-a65c88147d4a.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
