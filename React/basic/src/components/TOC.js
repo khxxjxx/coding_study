@@ -31,7 +31,7 @@ class TOC extends Component {
     }
     return (
       <nav>
-        <ul>{lists}</ul>
+        <ul class="nav">{lists}</ul>
       </nav>
     );
   }

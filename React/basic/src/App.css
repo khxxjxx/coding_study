@@ -1,0 +1,56 @@
+header {
+  text-align: center;
+  border-color: black;
+  border-bottom-style: solid;
+  border-width: 1px;
+  height: 70px;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+article {
+  text-align: center;
+  height: 100%;
+}
+
+.ul {
+  margin: 0;
+  padding-top: 15px;
+  border-right-style: solid;
+  border-width: 1px;
+}
+
+h2 {
+  margin-top: 50px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+}
+
+ul {
+  margin: 0;
+}
+
+.nav {
+  list-style-type: decimal;
+  display: grid;
+  padding-top: 30px;
+}
+
+html,
+body,
+#root,
+.App,
+.grid {
+  height: 100%;
+  margin: 0;
+}

@@ -109,36 +109,40 @@ class App extends Component {
             this.setState({ mode: 'welcome' });
           }.bind(this)}
         />
-        <TOC
-          onChangePage={function (id) {
-            this.setState({ mode: 'read', selected_content_id: +id });
-          }.bind(this)}
-          data={this.state.contents}
-        />
-        <Control
-          onChangeMode={function (_mode) {
-            if (_mode === 'delete') {
-              if (window.confirm('삭제하시겠습니까?')) {
-                let _contents = Array.from(this.state.contents);
-                let i = 0;
-                while (i < this.state.contents.length) {
-                  if (_contents[i].id === this.state.selected_content_id) {
-                    _contents.splice(i, 1);
-                    break;
+        <div class="grid">
+          <div class="ul">
+            <Control
+              onChangeMode={function (_mode) {
+                if (_mode === 'delete') {
+                  if (window.confirm('삭제하시겠습니까?')) {
+                    let _contents = Array.from(this.state.contents);
+                    let i = 0;
+                    while (i < this.state.contents.length) {
+                      if (_contents[i].id === this.state.selected_content_id) {
+                        _contents.splice(i, 1);
+                        break;
+                      }
+                      i++;
+                    }
+                    this.setState({ mode: 'welcome', contents: _contents });
+                    alert('삭제되었습니다.');
                   }
-                  i++;
+                } else {
+                  this.setState({
+                    mode: _mode,
+                  });
                 }
-                this.setState({ mode: 'welcome', contents: _contents });
-                alert('삭제되었습니다.');
-              }
-            } else {
-              this.setState({
-                mode: _mode,
-              });
-            }
-          }.bind(this)}
-        />
-        {this.getContent()}
+              }.bind(this)}
+            />
+            <TOC
+              onChangePage={function (id) {
+                this.setState({ mode: 'read', selected_content_id: +id });
+              }.bind(this)}
+              data={this.state.contents}
+            />
+          </div>
+          {this.getContent()}
+        </div>
       </div>
     );
   }
