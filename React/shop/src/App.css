@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+}
+
+.jumbotron {
+  background-image: url('./background.jpg');
+  background-size: cover;
+  color: white;
+}
+
+.jumbotron button {
+  color: white;
+  background-color: #0051ff;
+  border: none;
+  border-radius: 5px;
+  width: 70px;
+  height: 35px;
+}
