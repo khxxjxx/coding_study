@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
@@ -16,12 +18,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link>
-                <Link to="/">Home</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/detail">Detail</Link>
-              </Nav.Link>
+              <Nav.Link to="/">Home</Nav.Link>
+              <Nav.Link to="/detail">Detail</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -57,8 +55,8 @@ function App() {
         </div>
       </Route>
 
-      <Route path="/detail">
-        <Detail />
+      <Route path="/detail/:id">
+        <Detail shoes={shoes} />
       </Route>
     </div>
   );
@@ -69,9 +67,7 @@ function Page(props) {
     <div>
       <div className="col-md-4">
         <img
-          src={
-            'https://codingapple1.github.io/shop/shoes' + (props.i + 1) + '.jpg'
-          }
+          src={`https://codingapple1.github.io/shop/shoes${props.i + 1}.jpg`}
           width="100%"
         />
         <h4>{props.shoes.title}</h4>
