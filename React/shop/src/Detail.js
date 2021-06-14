@@ -28,7 +28,9 @@ function Detail(props) {
   return (
     <div className="container">
       <제목>Detail</제목>
-      {alert === true ? (
+      {alert === true &&
+      props.재고[찾은상품.id] < 3 &&
+      props.재고[찾은상품.id] > 0 ? (
         <div className="my-alert">
           <p>재고가 얼마 남지 않았습니다</p>
         </div>
@@ -46,7 +48,18 @@ function Detail(props) {
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
+          <Info 재고={props.재고} 찾은상품={찾은상품} />
+          {props.재고[찾은상품.id] > 0 ? (
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                let new재고 = [...props.재고];
+                props.재고변경(new재고.map((x, i) => (i == id ? x - 1 : x)));
+              }}>
+              주문하기
+            </button>
+          ) : null}
+
           <button
             className="btn btn-danger"
             onClick={() => {
@@ -60,10 +73,7 @@ function Detail(props) {
   );
 }
 
-function 재고() {
-  <div className="my-alert">
-    <p>재고가 얼마 남지 않았습니다</p>
-  </div>;
+function Info(props) {
+  return <p>재고 : {props.재고[props.찾은상품.id]}</p>;
 }
-
 export default Detail;
