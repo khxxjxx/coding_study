@@ -1,15 +1,25 @@
 /* eslint-disable */
 
 import React, { useEffect, useState } from 'react';
+import { Nav } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
+import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 const 제목 = styled.div`
   font-size: 25px;
 `;
 
 function Detail(props) {
+  let [alert, alert변경] = useState(true);
+  let { id } = useParams();
+  let history = useHistory();
+  let 찾은상품 = props.shoes.find(x => x.id == id);
+  let [누른탭, 누른탭변경] = useState(0);
+  let [스위치, 스위치변경] = useState(false);
+
   useEffect(() => {
     let 타이머 = setTimeout(() => {
       alert변경(false);
@@ -19,11 +29,6 @@ function Detail(props) {
     };
     // setTimeout을 사용하면 꼭 제거도 같이해줘야 버그가 덜생긴다
   }, []);
-
-  let [alert, alert변경] = useState(true);
-  let { id } = useParams();
-  let history = useHistory();
-  let 찾은상품 = props.shoes.find(x => x.id == id);
 
   return (
     <div className="container">
@@ -48,32 +53,107 @@ function Detail(props) {
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}원</p>
-          <Info 재고={props.재고} 찾은상품={찾은상품} />
+          <Info
+            재고={props.재고}
+            찾은상품={찾은상품}
+            dispatch={props.dispatch}
+            quan={props.quan}
+          />
           {props.재고[찾은상품.id] > 0 ? (
             <button
               className="btn btn-danger"
               onClick={() => {
                 let new재고 = [...props.재고];
-                props.재고변경(new재고.map((x, i) => (i == id ? x - 1 : x)));
+                props.재고변경(
+                  new재고.map((x, i) => (i == id ? x - props.quan : x))
+                );
+                props.dispatch({
+                  type: '항목추가',
+                  payload: {
+                    id: props.state.length,
+                    name: 찾은상품.title,
+                    quan: props.quan,
+                    재고: props.재고[찾은상품.id],
+                  },
+                });
+                history.push('/cart');
               }}>
               주문하기
             </button>
           ) : null}
 
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              history.goBack();
-            }}>
+          <button className="btn btn-danger" onClick={() => history.goBack()}>
             뒤로가기
           </button>
         </div>
       </div>
+
+      <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-0"
+            onClick={() => {
+              스위치변경(false);
+              누른탭변경(0);
+            }}>
+            Active
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-1"
+            onClick={() => {
+              스위치변경(false);
+              누른탭변경(1);
+            }}>
+            Option 2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      <CSSTransition in={스위치} classNames="wow" timeout={500}>
+        <TabContent 누른탭={누른탭} 스위치변경={스위치변경} />
+      </CSSTransition>
     </div>
   );
 }
 
-function Info(props) {
-  return <p>재고 : {props.재고[props.찾은상품.id]}</p>;
+function TabContent(props) {
+  useEffect(() => {
+    props.스위치변경(true);
+  });
+  if (props.누른탭 === 0) {
+    return <div>0번째 내용입니다</div>;
+  } else if (props.누른탭 === 1) {
+    return <div>1번째 내용입니다</div>;
+  }
 }
-export default Detail;
+
+function Info(props) {
+  return (
+    <p>
+      재고 :
+      <input
+        value={props.quan}
+        onChange={e => {
+          if (e.target.value <= props.재고[props.찾은상품.id]) {
+            props.dispatch({ type: '변경', payload: e.target.value });
+          } else {
+            alert(`${props.재고[props.찾은상품.id]} 이하로만 입력가능합니다`);
+          }
+        }}
+      />
+      / {props.재고[props.찾은상품.id]}
+    </p>
+  );
+}
+
+function 함수명(state) {
+  return {
+    state: state.reducer,
+    quan: state.reducer3,
+  };
+}
+
+export default connect(함수명)(Detail);
+// export default Detail;

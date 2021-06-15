@@ -5,6 +5,7 @@ import Data from './data.js';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import Detail from './Detail';
 import axios from 'axios';
+import Cart from './Cart.js';
 
 function App() {
   let [shoes, shoes변경] = useState(Data);
@@ -83,6 +84,10 @@ function App() {
       <Route path="/detail/:id">
         <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
       </Route>
+
+      <Route path="/cart">
+        <Cart></Cart>
+      </Route>
     </div>
   );
 }
@@ -91,10 +96,12 @@ function Page(props) {
   return (
     <div className="col-md-4">
       <img
-        src={`https://codingapple1.github.io/shop/shoes${props.i + 1}.jpg`}
+        src={`https://codingapple1.github.io/shop/shoes${
+          props.shoes.id + 1
+        }.jpg`}
         width="100%"
         onClick={() => {
-          props.history.push(`/detail/${props.i}`);
+          props.history.push(`/detail/${props.shoes.id}`);
         }}
       />
       <h4>{props.shoes.title}</h4>
