@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
 import Data from './data.js';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
-import Detail from './Detail';
+// import Detail from './Detail';
 import axios from 'axios';
 import Cart from './Cart.js';
+let Detail = lazy(() => import('./Detail.js'));
 
 function App() {
   let [shoes, shoes변경] = useState(Data);
@@ -82,7 +83,9 @@ function App() {
       </Route>
 
       <Route path="/detail/:id">
-        <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+        <Suspense fallback={<div>로딩중입니다.</div>}>
+          <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
+        </Suspense>
       </Route>
 
       <Route path="/cart">
