@@ -34,7 +34,7 @@ function Detail(props) {
   useEffect(() => {
     let cart = localStorage.getItem('최근본상품');
     cart == null ? (cart = []) : (cart = JSON.parse(cart));
-    cart.push(id);
+    cart.length < 3 ? cart.unshift(id) : cart.pop(), cart.unshift(id);
     cart = [...new Set(cart)];
     localStorage.setItem('최근본상품', JSON.stringify(cart));
     cart변경(cart);
@@ -93,7 +93,9 @@ function Detail(props) {
               </button>
             ) : null}
 
-            <button className="btn btn-danger" onClick={() => history.goBack()}>
+            <button
+              className="btn btn-danger"
+              onClick={() => history.push('/')}>
               뒤로가기
             </button>
           </div>
@@ -131,7 +133,9 @@ function Detail(props) {
           <h5>최근본상품</h5>
           <div className="row">
             {cart.map(id => {
-              return <최근본page id={id} shoes={props.shoes} />;
+              return (
+                <최근본page id={id} shoes={props.shoes} history={history} />
+              );
             })}
           </div>
         </div>
@@ -144,7 +148,10 @@ function 최근본page(props) {
     <div className="col">
       <img
         src={`https://codingapple1.github.io/shop/shoes${+props.id + 1}.jpg`}
-        width="50%"
+        width="100cm"
+        onClick={() => {
+          props.history.push(`/detail/${props.id}`);
+        }}
       />
       <p>{props.shoes[props.id].title}</p>
     </div>
