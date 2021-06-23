@@ -34,7 +34,12 @@ function Detail(props) {
   useEffect(() => {
     let cart = localStorage.getItem('최근본상품');
     cart == null ? (cart = []) : (cart = JSON.parse(cart));
-    cart.length < 3 ? cart.unshift(id) : cart.pop(), cart.unshift(id);
+    cart.length < 3
+      ? cart.unshift(id)
+      : cart.includes(id)
+      ? cart.unshift(id)
+      : cart.pop(),
+      cart.unshift(id);
     cart = [...new Set(cart)];
     localStorage.setItem('최근본상품', JSON.stringify(cart));
     cart변경(cart);
