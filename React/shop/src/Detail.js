@@ -92,7 +92,7 @@ function Detail(props) {
                       재고: props.재고[찾은상품.id],
                     },
                   });
-                  history.push('/cart');
+                  history.push('/shop/cart');
                 }}>
                 주문하기
               </button>
@@ -100,7 +100,7 @@ function Detail(props) {
 
             <button
               className="btn btn-danger"
-              onClick={() => history.push('/')}>
+              onClick={() => history.push('/shop')}>
               뒤로가기
             </button>
           </div>
@@ -155,7 +155,7 @@ function 최근본page(props) {
         src={`https://codingapple1.github.io/shop/shoes${+props.id + 1}.jpg`}
         width="100cm"
         onClick={() => {
-          props.history.push(`/detail/${props.id}`);
+          props.history.push(`/shop/detail/${props.id}`);
         }}
       />
       <p>{props.shoes[props.id].title}</p>

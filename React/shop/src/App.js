@@ -22,10 +22,10 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">
+              <Nav.Link as={Link} to="/shop">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/detail/0">
+              <Nav.Link as={Link} to="/shop/detail/0">
                 Detail
               </Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
@@ -46,7 +46,7 @@ function App() {
         </Container>
       </Navbar>
 
-      <Route exact path="/">
+      <Route exact path="/shop">
         <div className="jumbotron">
           <h1>20% Season Off</h1>
           <p>Jin's ShoeShop</p>
@@ -82,13 +82,13 @@ function App() {
         </div>
       </Route>
 
-      <Route path="/detail/:id">
+      <Route path="/shop/detail/:id">
         <Suspense fallback={<div>로딩중입니다.</div>}>
           <Detail shoes={shoes} 재고={재고} 재고변경={재고변경} />
         </Suspense>
       </Route>
 
-      <Route path="/cart">
+      <Route path="/shop/cart">
         <Cart></Cart>
       </Route>
     </div>
@@ -104,7 +104,7 @@ function Page(props) {
         }.jpg`}
         width="100%"
         onClick={() => {
-          props.history.push(`/detail/${props.shoes.id}`);
+          props.history.push(`/shop/detail/${props.shoes.id}`);
         }}
       />
       <h4>{props.shoes.title}</h4>
