@@ -29,7 +29,6 @@ const cartReducer = (state, action) => {
           ...existingCartItem,
           amount: existingCartItem.amount + 1,
         };
-        console.log(existingCartItem, action.item.amount);
         updatedItems = [...state.items];
         updatedItems[existingCartItemIndex] = updatedItem;
       } else {
@@ -37,7 +36,6 @@ const cartReducer = (state, action) => {
           ...existingCartItem,
           amount: existingCartItem.amount + action.item.amount,
         };
-        console.log(existingCartItem, action.item.amount);
         updatedItems = [...state.items];
         updatedItems[existingCartItemIndex] = updatedItem;
       }
