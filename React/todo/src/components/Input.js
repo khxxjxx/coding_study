@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import List from './List';
 
 const Input = props => {
+  let lists = localStorage.getItem('lists');
+  lists === null ? (lists = []) : (lists = JSON.parse(lists));
+
   const [input, setInput] = useState('');
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([...lists]);
+
+  useEffect(() => {
+    localStorage.setItem('lists', JSON.stringify(list));
+  }, [list]);
 
   const inputValue = e => {
     setInput(e.target.value);
@@ -11,9 +18,10 @@ const Input = props => {
 
   const submit = e => {
     e.preventDefault();
-    setList(prevList => {
-      return [...prevList, { id: list.length, value: input, clicked: false }];
-    });
+    input !== '' &&
+      setList(prevList => {
+        return [...prevList, { id: list.length, value: input, clicked: false }];
+      });
     setInput('');
   };
 
@@ -44,6 +52,7 @@ const Input = props => {
         id={list.id}
         clicked={list.clicked}
         onDelete={onDeleteHandler}
+        setList={setList}
       />
     </>
   );
