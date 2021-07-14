@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 
 const Weeks = props => {
-  const [week, SetWeek] = useState([
+  const today = new Date();
+  const [now, setNow] = useState(moment());
+
+  const [days, SetDays] = useState([
     {
       id: 0,
       day: 'Sun',
@@ -33,32 +36,56 @@ const Weeks = props => {
     },
   ]);
 
-  const now = moment();
+  useEffect(() => {
+    setNow(moment());
+    console.log(
+      now.format('YYYY-M-D') ===
+        `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+    );
+  }, []);
 
-  const weekChangeHandlerRight = e => {
+  const daysChangeHandlerRight = e => {
     e.preventDefault();
-    const newWeek = [...week];
-    newWeek.push(newWeek.shift());
-    SetWeek(newWeek);
+    const newDays = [...days];
+    newDays.push(newDays.shift());
+    SetDays(newDays);
+    setNow(now.add(1, 'day'));
   };
 
-  const weekChangeHandlerLeft = e => {
+  const daysChangeHandlerLeft = e => {
     e.preventDefault();
-    const newWeek = [...week];
-    newWeek.unshift(newWeek.pop());
-    SetWeek(newWeek);
+    const newDays = [...days];
+    newDays.unshift(newDays.pop());
+    SetDays(newDays);
+    setNow(now.subtract(1, 'day'));
   };
 
   return (
     <div className="week">
-      <button onClick={weekChangeHandlerLeft}>←</button>
-      {week.map(week => (
-        <div key={week.id}>
-          <div>{week.day}</div>
-          <div>{now.day(week.id).format('DD', 'date')}</div>
+      <button onClick={daysChangeHandlerLeft}>←</button>
+      {days.map((day, idx) => (
+        <div key={day.id}>
+          <div>{day.day}</div>
+          <div
+            className={
+              now
+                .clone()
+                .subtract(3, 'day')
+                .add(idx, 'day')
+                .format('YYYY-M-D') ===
+                `${today.getFullYear()}-${
+                  today.getMonth() + 1
+                }-${today.getDate()}` && 'today'
+            }>
+            {now
+              .clone()
+              .subtract(3, 'day')
+              .add(idx, 'day')
+              .format('DD', 'date')}
+          </div>
         </div>
       ))}
-      <button onClick={weekChangeHandlerRight}>→</button>
+      <button onClick={daysChangeHandlerRight}>→</button>
     </div>
   );
 };
