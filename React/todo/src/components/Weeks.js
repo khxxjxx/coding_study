@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import moment from 'moment';
+import React, { useState } from 'react';
 
 const Weeks = props => {
   const today = new Date();
-  const [now, setNow] = useState(moment());
+  const { now, setNow } = props;
 
   const [days, SetDays] = useState([
     {
@@ -36,16 +35,13 @@ const Weeks = props => {
     },
   ]);
 
-  useEffect(() => {
-    setNow(moment());
-  }, []);
-
   const daysChangeHandlerRight = e => {
     e.preventDefault();
     const newDays = [...days];
     newDays.push(newDays.shift());
     SetDays(newDays);
-    setNow(now.add(1, 'day'));
+    const newNow = now.clone().add(1, 'day');
+    setNow(newNow);
   };
 
   const daysChangeHandlerLeft = e => {
@@ -53,14 +49,15 @@ const Weeks = props => {
     const newDays = [...days];
     newDays.unshift(newDays.pop());
     SetDays(newDays);
-    setNow(now.subtract(1, 'day'));
+    const newNow = now.clone().subtract(1, 'day');
+    setNow(newNow);
   };
 
   return (
     <div className="week">
       <button onClick={daysChangeHandlerLeft}>←</button>
       {days.map((day, idx) => (
-        <div key={day.id}>
+        <div className={idx === 3 ? '' : 'choice'} key={day.id}>
           <div>{day.day}</div>
           <div
             className={

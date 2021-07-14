@@ -2,14 +2,18 @@ import React, { useState, useEffect } from 'react';
 import List from './List';
 
 const Input = props => {
-  let lists = localStorage.getItem('lists');
+  let lists = localStorage.getItem(props.now);
   lists === null ? (lists = []) : (lists = JSON.parse(lists));
 
   const [input, setInput] = useState('');
-  const [list, setList] = useState([...lists]);
+  const [list, setList] = useState(lists);
 
   useEffect(() => {
-    localStorage.setItem('lists', JSON.stringify(list));
+    setList(lists);
+  }, [props.now]);
+
+  useEffect(() => {
+    localStorage.setItem(props.now, JSON.stringify(list));
   }, [list]);
 
   const inputValue = e => {

@@ -71,8 +71,18 @@ img {
   width: 40px;
 }
 
-.today {
-  background-color: #4e2626;
-  border-radius: 50%;
+.week div:last-child {
   font-weight: bold;
+}
+
+.today {
+  background-color: #361d1d;
+  border-radius: 50%;
+}
+
+.choice {
+  /* background-color: black;
+  border-radius: 50%;
+  font-weight: bold; */
+  color: #8d8c8c;
 }
