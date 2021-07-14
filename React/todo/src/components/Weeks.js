@@ -38,10 +38,6 @@ const Weeks = props => {
 
   useEffect(() => {
     setNow(moment());
-    console.log(
-      now.format('YYYY-M-D') ===
-        `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
-    );
   }, []);
 
   const daysChangeHandlerRight = e => {
@@ -73,9 +69,11 @@ const Weeks = props => {
                 .subtract(3, 'day')
                 .add(idx, 'day')
                 .format('YYYY-M-D') ===
-                `${today.getFullYear()}-${
-                  today.getMonth() + 1
-                }-${today.getDate()}` && 'today'
+              `${today.getFullYear()}-${
+                today.getMonth() + 1
+              }-${today.getDate()}`
+                ? 'today'
+                : ''
             }>
             {now
               .clone()
