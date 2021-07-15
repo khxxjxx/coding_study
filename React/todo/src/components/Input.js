@@ -33,12 +33,14 @@ const Input = props => {
     if (window.confirm('리스트에서 완전히 삭제하시겠습니까?')) {
       const newList = list.filter(list => list.id !== id);
       setList(newList);
-    } else {
-      let newList = [...list];
-      newList[newList.findIndex(list => list.id === id)].clicked =
-        !newList[newList.findIndex(list => list.id === id)].clicked;
-      setList(newList);
     }
+  };
+
+  const onClickHandler = id => {
+    let newList = [...list];
+    newList[newList.findIndex(list => list.id === id)].clicked =
+      !newList[newList.findIndex(list => list.id === id)].clicked;
+    setList(newList);
   };
 
   return (
@@ -56,6 +58,7 @@ const Input = props => {
         id={list.id}
         clicked={list.clicked}
         onDelete={onDeleteHandler}
+        onClick={onClickHandler}
         setList={setList}
       />
     </>

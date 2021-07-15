@@ -15,9 +15,13 @@ input:focus {
   text-align: center;
 } */
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .list {
-  width: 250px;
-  align-content: center;
+  width: 300px;
   cursor: pointer;
   margin: 0 auto;
   font-size: 20px;
@@ -29,6 +33,37 @@ input:focus {
   text-decoration: line-through;
   text-decoration-color: indianred;
   color: indianred;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkbox + label::before {
+  display: inline-block;
+  content: ' ';
+  width: 15px;
+  height: 15px;
+  line-height: 5px;
+  border-radius: 20%;
+  vertical-align: middle;
+  border: 1px solid #808080;
+  background-color: #80808067;
+  margin: 0 15px;
+}
+
+.clicked .checkbox + label::before {
+  content: '✓';
+}
+
+.delete {
+  display: inline;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  float: right;
+  padding-right: 10px;
+  color: gray;
 }
 
 img {
@@ -81,8 +116,5 @@ img {
 }
 
 .choice {
-  /* background-color: black;
-  border-radius: 50%;
-  font-weight: bold; */
   color: #8d8c8c;
 }

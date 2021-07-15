@@ -10,7 +10,8 @@ const List = props => {
             key={list.id}
             id={list.id}
             clicked={list.clicked}
-            onDelete={props.onDelete}>
+            onDelete={props.onDelete}
+            onClick={props.onClick}>
             {list.value}
           </Item>
         ))}
