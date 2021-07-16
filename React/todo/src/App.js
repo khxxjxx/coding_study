@@ -4,7 +4,7 @@ import NavBar from './components/NavBar';
 import Clock from './components/Clock';
 import Weeks from './components/Weeks';
 import moment from 'moment';
-import { Route, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Month from './Month';
 import './App.css';
 
@@ -19,14 +19,16 @@ function App() {
   return (
     <>
       <NavBar setNow={setNow} />
-      <Route path="/todo/today">
-        <Weeks now={now} setNow={setNow} />
-        <Clock />
-        <Input now={now.format('YYYY-MM-DD')} />
-      </Route>
-      <Route path="/todo/month">
-        <Month history={history} setNow={setNow} />
-      </Route>
+      <Switch>
+        <Route path="/todo/month">
+          <Month history={history} setNow={setNow} />
+        </Route>
+        <Route path="/:id">
+          <Weeks now={now} setNow={setNow} />
+          <Clock />
+          <Input now={now.format('YYYY-MM-DD')} />
+        </Route>
+      </Switch>
     </>
   );
 }

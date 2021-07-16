@@ -70,7 +70,7 @@ const Month = props => {
   };
 
   return (
-    <div className="calender">
+    <div className="calendar">
       <div className="month">
         <div className="control">
           <button
