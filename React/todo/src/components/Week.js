@@ -7,16 +7,17 @@ const Week = props => {
   };
 
   return (
-    <div className={idx === 3 ? '' : 'choice'}>
+    <div
+      className={`day ${idx === 3 ? '' : 'choice'}`}
+      onClick={dayChangeHandler}>
       <div>{day.day}</div>
       <div
-        onClick={dayChangeHandler}
-        className={`day ${
+        className={
           now.clone().subtract(3, 'day').add(idx, 'day').format('YYYY-M-D') ===
           `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
             ? 'today'
             : ''
-        }`}>
+        }>
         {now.clone().subtract(3, 'day').add(idx, 'day').format('DD', 'date')}
       </div>
     </div>

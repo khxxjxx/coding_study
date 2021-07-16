@@ -56,11 +56,23 @@ const Weeks = props => {
 
   const daysChangeHandler = idx => {
     if (idx > 3) {
-      const newNow = now.clone().add(idx - 3, 'day');
+      idx = idx - 3;
+      const newNow = now.clone().add(idx, 'day');
       setNow(newNow);
+      const newDays = [...days];
+      for (idx; idx > 0; idx--) {
+        newDays.push(newDays.shift());
+      }
+      SetDays(newDays);
     } else if (idx < 3) {
-      const newNow = now.clone().subtract(3 - idx, 'day');
+      idx = 3 - idx;
+      const newNow = now.clone().subtract(idx, 'day');
       setNow(newNow);
+      const newDays = [...days];
+      for (idx; idx > 0; idx--) {
+        newDays.unshift(newDays.pop());
+      }
+      SetDays(newDays);
     }
   };
 
