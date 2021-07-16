@@ -49,7 +49,7 @@ const Input = props => {
         <input
           type="text"
           value={input}
-          placeholder="오늘의 할일"
+          placeholder="할일을 적어주세요"
           onChange={inputValue}
         />
       </form>

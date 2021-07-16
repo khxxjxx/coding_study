@@ -12,7 +12,11 @@ const NavBar = props => {
       <Container>
         <Navbar.Brand>TO DO</Navbar.Brand>
         <Nav onClick={clickHandler} className="justify-content-end">
-          <Nav.Link as={Link} to="/todo/today" className="nav__today">
+          <Nav.Link
+            as={Link}
+            to="/todo/today"
+            className="nav__today"
+            ref={props.today}>
             Today
           </Nav.Link>
           <Nav.Link as={Link} to="/todo/month" className="nav__month">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Input from './components/Input';
 import NavBar from './components/NavBar';
 import Clock from './components/Clock';
@@ -11,14 +11,16 @@ import './App.css';
 function App() {
   const [now, setNow] = useState(moment());
   const history = useHistory();
+  const today = useRef();
 
   useEffect(() => {
+    today.current.focus();
     setNow(moment());
   }, []);
 
   return (
     <>
-      <NavBar setNow={setNow} />
+      <NavBar today={today} setNow={setNow} />
       <Switch>
         <Route path="/todo/month">
           <Month history={history} setNow={setNow} />

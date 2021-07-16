@@ -22,11 +22,26 @@
 }
 
 input {
+  background-color: #ffffffb4;
   width: 300px;
+  border-radius: 5px;
+  border: 1px solid #747474;
+  color: black;
+  padding-left: 10px;
+  font-weight: bold;
 }
 
 input:focus {
   outline: none;
+  background-color: #ffffff65;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+input::placeholder {
+  color: #414141;
 }
 
 ul {
@@ -213,6 +228,7 @@ ul {
 
 .nav__today:focus {
   color: white !important;
+  outline: transparent;
 }
 
 .nav__month:hover {
