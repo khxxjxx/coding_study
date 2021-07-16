@@ -14,7 +14,7 @@ const Item = props => {
         type="checkbox"
         id={props.id}
       />
-      <label for={props.id} />
+      <label htmlFor={props.id} />
       {props.children}
       <button className="delete" onClick={deleteHandler}>
         ✕

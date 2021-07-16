@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Week from './Week';
 
 const Weeks = props => {
   const today = new Date();
@@ -53,32 +54,28 @@ const Weeks = props => {
     setNow(newNow);
   };
 
+  const daysChangeHandler = idx => {
+    if (idx > 3) {
+      const newNow = now.clone().add(idx - 3, 'day');
+      setNow(newNow);
+    } else if (idx < 3) {
+      const newNow = now.clone().subtract(3 - idx, 'day');
+      setNow(newNow);
+    }
+  };
+
   return (
     <div className="week">
       <button onClick={daysChangeHandlerLeft}>←</button>
       {days.map((day, idx) => (
-        <div className={idx === 3 ? '' : 'choice'} key={day.id}>
-          <div>{day.day}</div>
-          <div
-            className={
-              now
-                .clone()
-                .subtract(3, 'day')
-                .add(idx, 'day')
-                .format('YYYY-M-D') ===
-              `${today.getFullYear()}-${
-                today.getMonth() + 1
-              }-${today.getDate()}`
-                ? 'today'
-                : ''
-            }>
-            {now
-              .clone()
-              .subtract(3, 'day')
-              .add(idx, 'day')
-              .format('DD', 'date')}
-          </div>
-        </div>
+        <Week
+          key={idx}
+          day={day}
+          idx={idx}
+          now={now}
+          today={today}
+          onDaysChange={daysChangeHandler}
+        />
       ))}
       <button onClick={daysChangeHandlerRight}>→</button>
     </div>

@@ -4,24 +4,30 @@ import NavBar from './components/NavBar';
 import Clock from './components/Clock';
 import Weeks from './components/Weeks';
 import moment from 'moment';
-import Img from '././img/1.jpg';
+import { Route, useHistory } from 'react-router-dom';
+import Month from './Month';
 import './App.css';
 
 function App() {
   const [now, setNow] = useState(moment());
+  const history = useHistory();
 
   useEffect(() => {
     setNow(moment());
   }, []);
 
   return (
-    <div>
-      <NavBar />
-      <img src={Img} alt="배경화면" />
-      <Weeks now={now} setNow={setNow} />
-      <Clock />
-      <Input now={now.format('YYYY-MM-DD')} />
-    </div>
+    <>
+      <NavBar setNow={setNow} />
+      <Route path="/todo/today">
+        <Weeks now={now} setNow={setNow} />
+        <Clock />
+        <Input now={now.format('YYYY-MM-DD')} />
+      </Route>
+      <Route path="/todo/month">
+        <Month history={history} setNow={setNow} />
+      </Route>
+    </>
   );
 }
 

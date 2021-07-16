@@ -1,3 +1,21 @@
+#root {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./img/1.jpg');
+  background-size: 100% 100%;
+  overflow: scroll;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
 .input {
   text-align: center;
   padding: 20px 0 40px;
@@ -11,10 +29,6 @@ input:focus {
   outline: none;
 }
 
-/* .input ::placeholder {
-  text-align: center;
-} */
-
 ul {
   list-style: none;
   padding: 0;
@@ -22,7 +36,6 @@ ul {
 
 .list {
   width: 300px;
-  cursor: pointer;
   margin: 0 auto;
   font-size: 20px;
   color: white;
@@ -47,9 +60,10 @@ ul {
   line-height: 5px;
   border-radius: 20%;
   vertical-align: middle;
-  border: 1px solid #808080;
-  background-color: #80808067;
+  border: 1px solid #474747;
+  background-color: #a1a1a179;
   margin: 0 15px;
+  cursor: pointer;
 }
 
 .clicked .checkbox + label::before {
@@ -64,13 +78,6 @@ ul {
   float: right;
   padding-right: 10px;
   color: gray;
-}
-
-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
 }
 
 .date {
@@ -92,7 +99,7 @@ img {
   display: flex;
   justify-content: space-around;
   color: white;
-  padding-top: 30px;
+  padding-top: 80px;
 }
 
 .week button {
@@ -117,4 +124,152 @@ img {
 
 .choice {
   color: #8d8c8c;
+}
+
+.day {
+  cursor: pointer;
+}
+
+/* .input__on-off {
+  display: none;
+}
+
+.label__on-off {
+  position: relative;
+  display: inline-block;
+  width: 121px;
+  height: 36px;
+  // background-color: #48546591;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.label__on-off > * {
+  display: inline-block;
+}
+
+.on-off__swith {
+  position: absolute;
+  width: 56px;
+  height: 30px;
+  // background-color: #9696967e;
+  top: 3px;
+  left: 62px;
+  border-radius: 15px;
+}
+
+.input__on-off:checked + .label__on-off .on-off__swith {
+  left: 3px;
+}
+
+.on-off__today {
+  color: white;
+  font-weight: bold;
+  padding: 5px 5px 5px 7px;
+}
+
+.on-off__month {
+  color: #424242;
+  font-weight: normal;
+  // color: black;
+  padding: 5px 5px 5px 7px;
+}
+
+.input__on-off:checked + .label__on-off .on-off__today {
+  color: #424242;
+  font-weight: normal;
+  // color: black;
+}
+
+.input__on-off:checked + .label__on-off .on-off__month {
+  color: white;
+  font-weight: bold;
+} */
+
+.calender {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.month {
+  display: inline-block;
+  width: 400px;
+  height: 400px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #70707048;
+  color: white;
+}
+
+.control {
+  padding-bottom: 10px;
+}
+
+.control button {
+  background: transparent;
+  border: transparent;
+  color: white;
+  margin: 0 20px;
+}
+
+.month__today {
+  font-weight: bold;
+  color: indianred;
+}
+
+.month__days {
+  color: #adadad;
+}
+
+.month__day {
+  width: 50px;
+  height: 65px;
+}
+
+.more-days .month__day {
+  height: 55px;
+}
+
+.days {
+  display: inline-block;
+  text-align: center;
+  font-size: 15px;
+}
+
+.days span {
+  cursor: pointer;
+}
+
+.get-item {
+  position: relative;
+  top: 2px;
+  left: 22px;
+  width: 5px;
+  height: 5px;
+  background-color: indianred;
+  border-radius: 50%;
+}
+
+.none {
+  background-color: transparent;
+}
+
+.all-clear {
+  background-color: #547e15;
+}
+
+.nav__today:hover {
+  color: white !important;
+}
+
+.nav__today:focus {
+  color: white !important;
+}
+
+.nav__month:hover {
+  color: white !important;
+}
+
+.nav__month:focus {
+  color: white !important;
 }
