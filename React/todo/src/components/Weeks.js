@@ -82,7 +82,7 @@ const Weeks = props => {
       {days.map((day, idx) => (
         <Week
           key={idx}
-          day={day}
+          days={days}
           idx={idx}
           now={now}
           today={today}

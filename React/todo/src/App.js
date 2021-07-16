@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      <NavBar today={today} setNow={setNow} />
+      <NavBar history={history} today={today} setNow={setNow} />
       <Switch>
         <Route path="/todo/month">
           <Month history={history} setNow={setNow} />

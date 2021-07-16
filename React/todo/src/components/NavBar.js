@@ -10,7 +10,11 @@ const NavBar = props => {
   return (
     <Navbar bg="dark" variant="dark" className="header">
       <Container>
-        <Navbar.Brand>TO DO</Navbar.Brand>
+        <Link to="/todo/today">
+          <Navbar.Brand className="todo" onClick={clickHandler}>
+            TO DO
+          </Navbar.Brand>
+        </Link>
         <Nav onClick={clickHandler} className="justify-content-end">
           <Nav.Link
             as={Link}

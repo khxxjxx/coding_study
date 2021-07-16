@@ -21,7 +21,7 @@ const Clock = props => {
   return (
     <div>
       <div className="date">
-        {props.now.clone().format('M')}월 {props.now.clone().format('D')}일
+        {props.now.clone().format('M')}월 {props.now.clone().format('DD')}일
       </div>
       {compare ? (
         <div className="clock">

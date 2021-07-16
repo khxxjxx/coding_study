@@ -1,5 +1,7 @@
+import React from 'react';
+
 const Week = props => {
-  const { day, idx, now, today, onDaysChange } = props;
+  const { days, idx, now, today, onDaysChange } = props;
 
   const dayChangeHandler = e => {
     e.preventDefault();
@@ -10,7 +12,15 @@ const Week = props => {
     <div
       className={`day ${idx === 3 ? '' : 'choice'}`}
       onClick={dayChangeHandler}>
-      <div>{day.day}</div>
+      <div>
+        {
+          days.find(
+            day =>
+              day.id ==
+              now.clone().subtract(3, 'day').add(idx, 'day').format('e')
+          ).day
+        }
+      </div>
       <div
         className={
           now.clone().subtract(3, 'day').add(idx, 'day').format('YYYY-M-D') ===
