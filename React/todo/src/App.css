@@ -95,6 +95,11 @@ ul {
   color: white;
 }
 
+.none-clock {
+  width: 500px;
+  height: 60px;
+}
+
 .week {
   display: flex;
   justify-content: space-around;
@@ -129,62 +134,6 @@ ul {
 .day {
   cursor: pointer;
 }
-
-/* .input__on-off {
-  display: none;
-}
-
-.label__on-off {
-  position: relative;
-  display: inline-block;
-  width: 121px;
-  height: 36px;
-  // background-color: #48546591;
-  cursor: pointer;
-  border-radius: 15px;
-}
-
-.label__on-off > * {
-  display: inline-block;
-}
-
-.on-off__swith {
-  position: absolute;
-  width: 56px;
-  height: 30px;
-  // background-color: #9696967e;
-  top: 3px;
-  left: 62px;
-  border-radius: 15px;
-}
-
-.input__on-off:checked + .label__on-off .on-off__swith {
-  left: 3px;
-}
-
-.on-off__today {
-  color: white;
-  font-weight: bold;
-  padding: 5px 5px 5px 7px;
-}
-
-.on-off__month {
-  color: #424242;
-  font-weight: normal;
-  // color: black;
-  padding: 5px 5px 5px 7px;
-}
-
-.input__on-off:checked + .label__on-off .on-off__today {
-  color: #424242;
-  font-weight: normal;
-  // color: black;
-}
-
-.input__on-off:checked + .label__on-off .on-off__month {
-  color: white;
-  font-weight: bold;
-} */
 
 .calendar {
   padding: 100px 0;

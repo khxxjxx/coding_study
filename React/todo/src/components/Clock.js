@@ -1,37 +1,46 @@
 import { useEffect, useState } from 'react';
 
 const Clock = props => {
-  const [date, setDate] = useState(new Date());
+  let [today, setToday] = useState(new Date());
+  const compare =
+    `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}` ===
+    props.now.clone().format('YYYY-M-D');
 
   useEffect(() => {
-    setTimeout(() => {
-      setDate(new Date());
-    }, 1000);
+    if (compare) {
+      setTimeout(() => {
+        setToday(new Date());
+      }, 1000);
 
-    return () => {
-      clearTimeout();
-    };
-  }, [date]);
+      return () => {
+        clearTimeout();
+      };
+    }
+  }, [today, props.now]);
 
   return (
     <div>
       <div className="date">
-        {date.getMonth() + 1}월 {date.getDate()}일
+        {props.now.clone().format('M')}월 {props.now.clone().format('D')}일
       </div>
-      <div className="clock">
-        {date.getHours()}:
-        {`${
-          date.getMinutes() < 10
-            ? `0${date.getMinutes()}`
-            : `${date.getMinutes()}`
-        }`}
-        :
-        {`${
-          date.getSeconds() < 10
-            ? `0${date.getSeconds()}`
-            : `${date.getSeconds()}`
-        }`}
-      </div>
+      {compare ? (
+        <div className="clock">
+          {today.getHours()}:
+          {`${
+            today.getMinutes() < 10
+              ? `0${today.getMinutes()}`
+              : `${today.getMinutes()}`
+          }`}
+          :
+          {`${
+            today.getSeconds() < 10
+              ? `0${today.getSeconds()}`
+              : `${today.getSeconds()}`
+          }`}
+        </div>
+      ) : (
+        <div className="none-clock"></div>
+      )}
     </div>
   );
 };

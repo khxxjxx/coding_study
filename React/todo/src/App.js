@@ -25,7 +25,7 @@ function App() {
         </Route>
         <Route path="/:id">
           <Weeks now={now} setNow={setNow} />
-          <Clock />
+          <Clock now={now} />
           <Input now={now.format('YYYY-MM-DD')} />
         </Route>
       </Switch>
