@@ -11,32 +11,19 @@ const Weather = () => {
 
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?${area}&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?${area}&appid=${API_KEY}&units=metric`
       )
       .then(response => {
         const weather = {
           temp: `${Math.floor(response.data.main.temp)}℃`,
           name: response.data.name,
           weather: response.data.weather[0].main,
-          icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
+          icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
         };
         setWeather(weather);
       })
       .catch(() => {
         alert('위치정보를 불러오는데 실패했습니다');
-        axios
-          .get(
-            `http://api.openweathermap.org/data/2.5/weather?id=1835848&appid=${API_KEY}&units=metric`
-          )
-          .then(response => {
-            const weather = {
-              temp: `${Math.floor(response.data.main.temp)}℃`,
-              name: response.data.name,
-              weather: response.data.weather[0].main,
-              icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
-            };
-            setWeather(weather);
-          });
       });
   };
 
