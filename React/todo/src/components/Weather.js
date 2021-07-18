@@ -14,15 +14,29 @@ const Weather = () => {
         `http://api.openweathermap.org/data/2.5/weather?${area}&appid=${API_KEY}&units=metric`
       )
       .then(response => {
-        setWeather({
+        const weather = {
           temp: `${Math.floor(response.data.main.temp)}℃`,
           name: response.data.name,
           weather: response.data.weather[0].main,
           icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
-        });
+        };
+        setWeather(weather);
       })
       .catch(() => {
-        alert('날씨정보를 불러오는데 실패했습니다');
+        alert('위치정보를 불러오는데 실패했습니다');
+        axios
+          .get(
+            `http://api.openweathermap.org/data/2.5/weather?id=1835848&appid=${API_KEY}&units=metric`
+          )
+          .then(response => {
+            const weather = {
+              temp: `${Math.floor(response.data.main.temp)}℃`,
+              name: response.data.name,
+              weather: response.data.weather[0].main,
+              icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`,
+            };
+            setWeather(weather);
+          });
       });
   };
 
@@ -36,12 +50,8 @@ const Weather = () => {
     getWeather('');
   };
 
-  const askForCoords = () => {
-    navigator.geolocation.getCurrentPosition(success, error);
-  };
-
   useEffect(() => {
-    askForCoords();
+    navigator.geolocation.getCurrentPosition(success, error);
   }, []);
 
   return (

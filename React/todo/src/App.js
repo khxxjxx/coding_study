@@ -6,7 +6,7 @@ import Weeks from './components/Weeks';
 import Weather from './components/Weather';
 import moment from 'moment';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import Month from './Month';
+import Month from './components/Month';
 import './App.css';
 
 function App() {
