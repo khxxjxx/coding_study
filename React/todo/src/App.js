@@ -3,6 +3,7 @@ import Input from './components/Input';
 import NavBar from './components/NavBar';
 import Clock from './components/Clock';
 import Weeks from './components/Weeks';
+import Weather from './components/Weather';
 import moment from 'moment';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Month from './Month';
@@ -31,6 +32,7 @@ function App() {
           <Input now={now.format('YYYY-MM-DD')} />
         </Route>
       </Switch>
+      <Weather />
     </>
   );
 }
