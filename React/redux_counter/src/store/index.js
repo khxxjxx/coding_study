@@ -26,7 +26,7 @@ const initialAuthState = {
 };
 
 const authSlice = createSlice({
-  name: 'anth',
+  name: 'auth',
   initialState: initialAuthState,
   reducers: {
     login(state) {
@@ -41,7 +41,7 @@ const authSlice = createSlice({
 const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
-    auth: authSlice.redecer,
+    auth: authSlice.reducer,
   },
 });
 
