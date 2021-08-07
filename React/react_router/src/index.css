@@ -24,3 +24,7 @@ h3,
 p {
   color: #042b5f;
 }
+
+li {
+  list-style: none;
+}
