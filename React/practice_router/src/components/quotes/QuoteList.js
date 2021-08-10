@@ -25,7 +25,15 @@ const QuoteList = props => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHAndler = () => {
-    history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc'));
+    // 아래 두개의 방식으로 표현가능
+
+    history.push({
+      pathname: location.pathname,
+      search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`,
+    });
+    // history.push(
+    //   `${location.pathname}?sort=${isSortingAscending ? 'desc' : 'asc'}`
+    // );
   };
 
   return (
