@@ -55,7 +55,7 @@ export async function getStaticProps() {
         id: meetup._id.toString(),
       })),
     },
-    revalidate: 1, // 요청이 들어오는 경우 최소 1초마다 이 페이지는 서버에서 재생성된다
+    revalidate: 1,
   };
 }
 
