@@ -24,14 +24,27 @@ function HomePage(props) {
   return <MeetupList meetups={props.meetups} />;
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
+  const req = context.req;
+  const res = context.res;
+
   // fetch data from an API
+
   return {
     props: {
       meetups: DUMMY_MEETUPS,
     },
-    revalidate: 1, // 요청이 들어오는 경우 최소 1초마다 이 페이지는 서버에서 재생성된다
   };
 }
+
+// export async function getStaticProps() {
+//   // fetch data from an API
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//     revalidate: 1, // 요청이 들어오는 경우 최소 1초마다 이 페이지는 서버에서 재생성된다
+//   };
+// }
 
 export default HomePage;
