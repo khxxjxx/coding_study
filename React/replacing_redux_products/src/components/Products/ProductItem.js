@@ -1,15 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import Card from '../UI/Card';
 import './ProductItem.css';
 import { toggleFav } from '../../store/actions/products';
 
 const ProductItem = props => {
-  const dispatch = useDispatch();
-
   const toggleFavHandler = () => {
-    dispatch(toggleFav(props.id));
+    // dispatch(toggleFav(props.id));
   };
 
   return (
@@ -19,8 +16,7 @@ const ProductItem = props => {
         <p>{props.description}</p>
         <button
           className={!props.isFav ? 'button-outline' : ''}
-          onClick={toggleFavHandler}
-        >
+          onClick={toggleFavHandler}>
           {props.isFav ? 'Un-Favorite' : 'Favorite'}
         </button>
       </div>
