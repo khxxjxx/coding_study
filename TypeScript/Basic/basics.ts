@@ -35,3 +35,12 @@ let people: {
   name: string;
   age: number;
 }[]; // 객체 배열
+
+// Type inference
+
+let course = 'React - The Complete Guide';
+// 불필요하게 유형을 지정하지 않아도 된다 유형 추론때문에 유형을 확인하고 그 유형을 확인하기 때문
+// course = 12345  => 유형 추론때문에 오류 발생
+
+let course2: string | number = 'React - The Complete Guide';
+course2 = 12345;
