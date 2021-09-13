@@ -1,3 +1,5 @@
+export {};
+
 // Primitives: number, string, boolean
 // More complex types: arrays, objects
 // Function types, parameters
@@ -43,3 +45,13 @@ let course = 'React - The Complete Guide';
 
 let course2: string | number = 'React - The Complete Guide';
 course2 = 12345;
+
+// Function & types
+
+function add(a: number, b: number) {
+  return a + b;
+}
+
+function print(value: any) {
+  console.log(value);
+}
