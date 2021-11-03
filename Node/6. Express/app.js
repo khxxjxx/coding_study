@@ -11,7 +11,10 @@ app.get('/sky/:id', (req, res, next) => {
   console.log(req.query);
   console.log(req.query.keyword); // heejin
 
-  res.send('hi');
+  // res.json({ name: 'Khxxjxx' });
+  // res.sendStatus(400);
+  res.setHeader('key', 'value');
+  res.status(201).send('created');
 });
 
 app.listen(8080);
